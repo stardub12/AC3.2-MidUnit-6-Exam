@@ -17,9 +17,14 @@ class DoubleVideoViewController: UIViewController, CellTitled {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // don't f with this line
         self.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
     }
 
+    override func viewDidLayoutSubviews() {
+        // update your layers' frames here
+    }
+    
     @IBAction func loadVideo(_ sender: UIButton) {
     
     }
