@@ -9,7 +9,8 @@ If you're like me (and I know you are), you must be craving for a login screen t
 
 A lot of code has been provided for you so that you may focus on getting the animations just right. When you fork this repo, take a moment to look over the code that is written in `AnimationsViewController`. You shouldn't need to change anything in the sections that are marked, but you may temporarily comment out code if you find it useful to debug. Just make sure to uncomment that code before submitting your final PR. 
 
-Movies of Animation to Create:
+**FINAL PRODUCT YOU MUST HAVE FOR FULL CREDIT:**
+
 [See final animations by clicking here!](https://gfycat.com/SimilarFlawedAchillestang)
 
 ---
