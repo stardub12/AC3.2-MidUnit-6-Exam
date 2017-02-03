@@ -89,7 +89,7 @@ class AnimationsViewController: UIViewController, CellTitled {
     
     private func configureConstraints() {
         self.edgesForExtendedLayout = []
-
+        
         // logo
         fireDatabaseLogo.snp.makeConstraints { (view) in
             view.top.equalToSuperview().offset(16.0)
@@ -160,17 +160,20 @@ class AnimationsViewController: UIViewController, CellTitled {
     
     // MARK: - Dynamics
     internal func setupBehaviorsAndAnimators() {
+        
+        _ = [fireDatabaseLogo, usernameContainerView, passwordContainerView, loginButton].map{ $0.isHidden = false }
+        
         // 1. Instantiate your dynamicAnimator
+        self.dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
+//        // 2. Instantiate/setup your behaviors
+//        //      a. Collision
         
-        // 2. Instantiate/setup your behaviors
-        //      a. Collision
+//        //b. Gravity
+//        //c. Bounce
+      // 3. Add your behaviors to the dynamic animator
         
-        //      b. Gravity
-        
-        //      c. Bounce
-        
-        // 3. Add your behaviors to the dynamic animator
 
+        //could not animate from this function. XCode errors/crashing stating that my frame is {0,0}
     }
     
     // MARK: Slide Animations
@@ -179,6 +182,23 @@ class AnimationsViewController: UIViewController, CellTitled {
         // 1. Add in animation for just the usernameContainerView here (the textField is a subview, so it will animate with it)
         //  Note: You must use constraints to do this animation
         //  Reminder: You need to call something self.view in order to apply the new constraints
+        
+        let usernameAnimator = UIViewPropertyAnimator(duration: 2.0, curve: .easeIn) {
+            self.usernameContainerView.snp.remakeConstraints { (view) in
+                view.centerX.equalToSuperview()
+                view.size.equalTo(CGSize(width: self.view.frame.width * 0.8, height: 44))
+                view.top.equalTo(self.fireDatabaseLogo.snp.bottom).offset(24.0)
+            }
+            self.view.layoutIfNeeded()
+        }
+        usernameAnimator.startAnimation()
+        
+        let collision = UICollisionBehavior(items: [usernameContainerView])
+        let bounce = UIDynamicItemBehavior(items: [usernameContainerView])
+        bounce.elasticity = 0.5
+        collision.translatesReferenceBoundsIntoBoundary = true
+        self.dynamicAnimator?.addBehavior(collision)
+        self.dynamicAnimator?.addBehavior(bounce)
         
     }
     
@@ -189,6 +209,22 @@ class AnimationsViewController: UIViewController, CellTitled {
         //  Reminder: You need to call something self.view in order to apply the new constraints
         //  Reminder: There is a small delay you need to account for
         
+        let passwordAnimator = UIViewPropertyAnimator(duration: 2.5, curve: .easeIn) {
+            self.passwordContainerView.snp.remakeConstraints { (view) in
+                view.centerX.equalToSuperview()
+                view.size.equalTo(CGSize(width: self.view.frame.width * 0.8, height: 44))
+                view.top.equalTo(self.usernameContainerView.snp.bottom).offset(16.0)
+            }
+            self.view.layoutIfNeeded()
+        }
+        passwordAnimator.startAnimation()
+        
+        let collision = UICollisionBehavior(items: [passwordContainerView])
+        let bounce = UIDynamicItemBehavior(items: [usernameContainerView])
+        bounce.elasticity = 0.5
+        collision.translatesReferenceBoundsIntoBoundary = true
+        self.dynamicAnimator?.addBehavior(collision)
+        self.dynamicAnimator?.addBehavior(bounce)
     }
     
     internal func addSlidingAnimationToLoginButton() {
@@ -197,21 +233,32 @@ class AnimationsViewController: UIViewController, CellTitled {
         //  Note: You must use constraints to do this animation
         //  Reminder: You need to call something self.view in order to apply the new constraints
         //  Reminder: There is a small delay you need to account for
-        
+        let loginAnimator = UIViewPropertyAnimator(duration: 2.5, curve: .easeIn) {
+            self.loginButton.snp.remakeConstraints { (view) in
+                view.centerX.equalToSuperview()
+                view.top.equalTo(self.passwordContainerView.snp.bottom).offset(32.0)
+            }
+            self.view.layoutIfNeeded()
+        }
+        loginAnimator.startAnimation()
     }
     
     internal func startSlidingAnimations() {
-
+        
         // 1. Begin the animations
-    
+        self.addSlidingAnimationToPassword()
+        self.addSlidingAnimationToUsername()
+        self.setupBehaviorsAndAnimators()
+        self.addSlidingAnimationToLoginButton()
+        self.animateLogo()
     }
     
     // MARK:  Scale & Fade-In Logo
     internal func animateLogo() {
         // 1. Ensure the scale and alpha are set properly prior to animating
-        
+        fireDatabaseLogo.alpha = 1.0
         // 2. Add the animations
-        
+
     }
     
     // MARK: - Actions
@@ -224,13 +271,19 @@ class AnimationsViewController: UIViewController, CellTitled {
         bouncyViews.append(newView)
         
         // 2. add it to the view hierarchy
-        
+        for ball in bouncyViews {
+        self.view.addSubview(ball)
+        }
         // 3. add constraints (make it 40.0 x 40.0)
-    
+        newView.snp.makeConstraints { (view) in
+            view.size.equalTo(CGSize(width: 40, height: 40))
+            view.centerX.equalToSuperview()
+            view.bottom.equalTo(self.loginButton.snp.top).offset(10)
+        }
         // 4. Add the view to your behaviors
         
         // 5. (Extra Credit) Add a random angular velocity (between 0 and 15 degrees) to the bounceBehavior
-
+        
     }
     
     
@@ -240,7 +293,7 @@ class AnimationsViewController: UIViewController, CellTitled {
     //                              DO NOT MODIFY THIS SECTION
     //                              But please do read the code
     //    👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇
-
+    
     // MARK: Lazy Inits
     // text fields
     internal lazy var usernameTextField: UITextField = {
