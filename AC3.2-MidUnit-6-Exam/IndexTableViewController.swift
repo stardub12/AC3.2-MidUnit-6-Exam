@@ -34,7 +34,7 @@ class IndexTableViewController: UITableViewController {
   
   // Assesment View Controllers
   private let animationViewControllers: [CellTitled] = [AnimationsViewController()]
-  private let avfoundationViewControllers: [CellTitled] = []
+  private let avfoundationViewControllers: [CellTitled] = [DoubleVideoViewController()]
   
   let cellIdentifier: String = "IndexCellIdentifier"
   
@@ -90,9 +90,8 @@ class IndexTableViewController: UITableViewController {
       let dtvc = animationViewControllers[row] as! UIViewController
       navigationController?.pushViewController(dtvc, animated: true)
     case (1, 0):
-      print("TODO")
-//      let rtvc = RecipesTableViewController()
-//      navigationController?.pushViewController(rtvc, animated: true)
+      let dvvc = avfoundationViewControllers[0] as! UIViewController
+      navigationController?.pushViewController(dvvc, animated: true)
     default:
       print("Add row")
     }

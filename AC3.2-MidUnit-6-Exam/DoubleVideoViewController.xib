@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DoubleVideoViewController" customModule="AC3_2_MidUnit_6_Exam" customModuleProvider="target">
+            <connections>
+                <outlet property="videoContainerBottom" destination="yBe-PG-e8R" id="5d2-WT-SeY"/>
+                <outlet property="videoContainerTop" destination="W1h-HN-WOI" id="Ve1-7B-1LA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1h-HN-WOI">
+                    <rect key="frame" x="0.0" y="24" width="375" height="200.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="W1h-HN-WOI" secondAttribute="height" multiplier="15:8" id="FO0-8f-4mf"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBe-PG-e8R">
+                    <rect key="frame" x="0.0" y="248.5" width="375" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="yBe-PG-e8R" secondAttribute="height" multiplier="15:8" id="UxD-yF-ICT"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3f-QP-LPe">
+                    <rect key="frame" x="149" y="519" width="77" height="30"/>
+                    <state key="normal" title="Load Video"/>
+                    <connections>
+                        <action selector="loadVideo:" destination="-1" eventType="touchUpInside" id="yNj-Cf-iUW"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="W1h-HN-WOI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2l1-ZL-zDm"/>
+                <constraint firstItem="yBe-PG-e8R" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="958-Hs-ZOy"/>
+                <constraint firstItem="yBe-PG-e8R" firstAttribute="top" secondItem="W1h-HN-WOI" secondAttribute="bottom" constant="24" id="Msm-F8-WDw"/>
+                <constraint firstAttribute="trailing" secondItem="yBe-PG-e8R" secondAttribute="trailing" id="QV6-1J-Oja"/>
+                <constraint firstItem="P3f-QP-LPe" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Tef-Xb-0Sd"/>
+                <constraint firstAttribute="bottom" secondItem="P3f-QP-LPe" secondAttribute="bottom" constant="118" id="Xnc-L2-HL5"/>
+                <constraint firstAttribute="trailing" secondItem="W1h-HN-WOI" secondAttribute="trailing" id="nsk-uo-e4c"/>
+                <constraint firstItem="W1h-HN-WOI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="sVd-7n-5rx"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
