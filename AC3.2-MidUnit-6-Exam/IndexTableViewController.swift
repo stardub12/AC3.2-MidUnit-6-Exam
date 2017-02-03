@@ -33,7 +33,7 @@ enum TestSections: String {
 class IndexTableViewController: UITableViewController {
   
   // Assesment View Controllers
-  private let animationViewControllers: [CellTitled] = []
+  private let animationViewControllers: [CellTitled] = [AnimationsViewController()]
   private let avfoundationViewControllers: [CellTitled] = []
   
   let cellIdentifier: String = "IndexCellIdentifier"
@@ -43,6 +43,11 @@ class IndexTableViewController: UITableViewController {
     super.viewDidLoad()
     self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     self.title = "AC3.2 Mid Unit 5"
+    
+    let backBarButtonItem = UIBarButtonItem()
+    backBarButtonItem.title = "Back"
+    backBarButtonItem.tintColor = AnimationColors.accent
+    navigationItem.backBarButtonItem = backBarButtonItem
   }
   
   
